@@ -1,27 +1,42 @@
 <template>
   <div class="h-4/5 w-full overflow-auto">
-    <ToDoCard
-      @onCheckbox="(todo) => $emit('onCheckbox', todo)"
-      @onDelete="todo => $emit('onDelete', todo)"
-      v-for="todo in todoList" 
-      :key="todo.id" 
-      :todo="todo" 
-      class="mt-3" 
-    />
+    <draggable @end="listChanged()" v-model="todos" item-key="id" draggable=".item">
+      <template #item="{element, index}">
+        <ToDoCard
+        @onCheckbox="(todo) => $emit('onCheckbox', todo)"
+        @onDelete="todo => $emit('onDelete', todo)"
+        :key="element.id" 
+        :todo="element" 
+        class="mt-3 item" 
+        />
+      </template>
+    </draggable>
   </div>
 </template>
 
 <script>
 import ToDoCard from '@/components/ToDoCard.vue'
+import draggable from 'vuedraggable'
 
 export default {
   components: {
-    ToDoCard
+    ToDoCard,
+    draggable
   },
   props: {
     todoList: {
       type: Array,
       required: true
+    }
+  },
+  data() {
+    return {
+      todos: this.todoList
+    }
+  },
+  methods: {
+    listChanged() {
+      this.$emit('listChanged', this.todos)
     }
   }
 }
