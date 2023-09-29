@@ -5,14 +5,18 @@
       {{ todo.text }}
     </div>
     <button @click="$emit('onDelete', todo)" class="ml-auto bg-red-600 hover:bg-red-700 text-white font-bold py-2 px-4 rounded-lg">
-      ✖️
+      <TrashCanIcon />
     </button>
   </div>
 </template>
 
 <script>
+import TrashCanIcon from 'vue-material-design-icons/TrashCanOutline.vue';
 
 export default {
+  components: {
+    TrashCanIcon
+  },
   props: {
     todo: {
       type: Object,
