@@ -3,7 +3,7 @@
     <div class="w-4/5 h-4/5 bg-gray-700 rounded-lg">
       <div class="h-full w-full py-10 px-10">
         <AddNewToDoArea @todoAdded="(text) => addTodo(text)"></AddNewToDoArea>
-        <ToDoListArea @listChanged="(todos) => listUpdate(todos)" @onCheckbox="(todo) => toggleCompleted(todo)" @onDelete="(todo) => deleteTodo(todo)" :todoList="todoList" class=" mt-10"/>
+        <ToDoListArea @listChanged="(todos) => listUpdate(todos)" @onCheckbox="(todo) => toggleCompleted(todo)" @onDelete="(index) => deleteTodo(index)" :todoList="todoList" class=" mt-10"/>
       </div>
     </div>
   </div>
@@ -38,8 +38,8 @@ export default {
         t.completed = !t.completed
       }})
     },
-    deleteTodo(todo) {
-      this.todoList = this.todoList.filter(data => data !== todo)
+    deleteTodo(index) {
+      this.todoList.splice(index, 1);
     },
     listUpdate(todos) {
       this.todoList = todos
