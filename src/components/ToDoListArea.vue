@@ -17,13 +17,11 @@
 </template>
 
 <script>
-import ToDoCard from '@/components/ToDoCard.vue'
 import draggable from 'vuedraggable'
 import TrashCanIcon from 'vue-material-design-icons/TrashCanOutline.vue';
 
 export default {
   components: {
-    ToDoCard,
     draggable,
     TrashCanIcon
   },
