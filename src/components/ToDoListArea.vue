@@ -7,7 +7,7 @@
           <div class="text-area whitespace-nowrap overflow-x-scroll">
             {{ element.text }}
           </div>
-          <button @click="index => $emit('onDelete', index)" class="ml-auto bg-red-600 hover:bg-red-700 text-white font-bold py-2 px-4 rounded-lg">
+          <button @click="$emit('onDelete', index)" class="ml-auto bg-red-600 hover:bg-red-700 text-white font-bold py-2 px-4 rounded-lg">
             <TrashCanIcon />
           </button>
         </div>
